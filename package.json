@@ -1,0 +1,33 @@
+{
+  "name": "projectjwtsession",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000a\u0000u\u0000t\u0000h\u0000_\u0000j\u0000w\u0000t\u0000_\u0000s\u0000e\u0000s\u0000s\u0000i\u0000o\u0000n\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ardacoskun/auth_jwt_session.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ardacoskun/auth_jwt_session/issues"
+  },
+  "homepage": "https://github.com/ardacoskun/auth_jwt_session#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^11.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.3.0",
+    "mongoose": "^6.1.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
