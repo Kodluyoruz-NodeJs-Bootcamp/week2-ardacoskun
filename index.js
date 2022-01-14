@@ -26,7 +26,7 @@ app.set("view engine", "ejs"); // template-engine
 //Session definition
 app.use(
   session({
-    secret: process.env.SESSION_SECRET_KEY,
+    secret: "jwt_session",
     resave: false,
     saveUninitialized: true,
     store,
