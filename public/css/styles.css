@@ -237,13 +237,12 @@
   justify-content: center;
 }
 
-.user-title {
-  color: #eee;
-}
-
+.user-title,
 .user-username {
   color: #eee;
+  margin-left: 10px;
 }
+
 .user-isAdmin {
   color: #303245;
 }
@@ -269,4 +268,28 @@
 .error-text {
   color: #f45d48;
   width: 100000px;
+}
+
+/* --------- */
+
+.error-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.errorpage-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-status {
+  font-size: 100px;
+  color: red;
+  margin-right: 20px;
+}
+
+.error-header {
+  color: red;
 }

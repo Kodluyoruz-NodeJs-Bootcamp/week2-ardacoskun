@@ -23,7 +23,7 @@ dotenv.config();
 global.userIn = null;
 
 app.set("view engine", "ejs"); // template-engine
-
+//Session definition
 app.use(
   session({
     secret: process.env.SESSION_SECRET_KEY,
@@ -32,6 +32,9 @@ app.use(
     store,
   })
 );
+
+//Middlewares
+
 app.use("*", (req, res, next) => {
   userIN = req.session.userId;
   next();
@@ -43,6 +46,9 @@ app.use(cookieParser());
 
 app.use(homeRouter);
 app.use(userRouter);
+app.get("*", function (req, res) {
+  res.status(404).render("error");
+});
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

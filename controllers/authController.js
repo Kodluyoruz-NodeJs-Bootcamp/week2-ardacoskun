@@ -1,11 +1,27 @@
 const Users = require("../models/user");
 const jwt = require("jsonwebtoken");
+const authController = require("../controllers/authController");
 
 // handle errors
-const handleErrors = (error) => {
-  //Error mesajlarını göstermeyi tamamla.
-  console.log(error.message);
+const handleErrors = (err) => {
+  let errors = { name: "", surname: "", password: "", username: "" };
+
+  if (err.code === 11000) {
+    errors.username = "Bu kullanıcı adı zaten kullanılıyor.";
+    return errors;
+  }
+
+  //validation errors
+
+  if (err.message.includes("Users validation failed")) {
+    Object.values(err.errors).forEach(({ properties }) => {
+      errors[properties.path] = properties.message;
+    });
+  }
+  return errors;
 };
+
+console.log(handleErrors);
 
 const getLogin = (req, res) => {
   res.render("login");
@@ -27,7 +43,10 @@ const postLogin = async (req, res) => {
     const token = await user.generateAuthToken(userAgent);
 
     //Set jwt token into a cookie
-    res.cookie("jwt", token, { httpOnly: true });
+    res.cookie("jwt", token, {
+      maxAge: 3 * 24 * 60 * 60 * 1000,
+      httpOnly: true,
+    });
 
     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
 
@@ -36,10 +55,10 @@ const postLogin = async (req, res) => {
     req.session.userAgent = userAgent;
     req.session.isLoggedIn = true;
 
-    res.status(201).redirect("/"); // .send()kısmı gerekebilir tekrar bak.
+    res.status(201).redirect("/");
   } catch (error) {
-    handleErrors(error);
-    res.status(500).json({ error: "Kullanıcı Bulunamadı ! " }); // Error mesajlarını düzelt.
+    const errors = handleErrors(error);
+    res.status(500).json({ errors });
   }
 };
 
@@ -51,8 +70,8 @@ const postRegister = async (req, res) => {
 
     res.status(201).redirect("/girisyap");
   } catch (error) {
-    handleErrors(error);
-    res.status(500).json("Kayıt Başarısız!");
+    const errors = handleErrors(error);
+    res.status(500).json({ errors });
   }
 };
 
@@ -98,4 +117,5 @@ module.exports = {
   logout,
   logoutAll,
   logoutUser,
+  handleErrors,
 };

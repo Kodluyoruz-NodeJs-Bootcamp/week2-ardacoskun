@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const Users = require("../models/user");
 
 const auth = async (req, res, next) => {
+  //Authentication middleware about compare browser informations in jwt token and session
   try {
     const token = await req.cookies.jwt;
     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
@@ -19,7 +20,6 @@ const auth = async (req, res, next) => {
     });
 
     if (!user) {
-      // res.redirect("/"); Bu satıra tekrar bak
       throw new Error("Kullanıcı Bulunamadı!");
     }
 

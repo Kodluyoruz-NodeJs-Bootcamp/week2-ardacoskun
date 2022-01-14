@@ -5,12 +5,12 @@ const jwt = require("jsonwebtoken");
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    required: [true, "Lütfen isminizi giriniz."],
     trim: true,
   },
   surname: {
     type: String,
-    required: true,
+    required: [true, "Lütfen soyadınızı giriniz."],
     trim: true,
   },
   username: {
@@ -20,8 +20,8 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: true,
-    minlength: 7,
+    required: [true, "Lütfen bir şifre giriniz."],
+    minlength: [7, "Şifre en az 7 karakterden oluşmalı."],
     validate(value) {
       if (value.includes("gusto")) {
         throw new Error("Şifre içinde gusto kullanamazsınız.");
@@ -51,7 +51,10 @@ userSchema.methods.generateAuthToken = async function (userAgent) {
 
   const token = jwt.sign(
     { _id: user._id.toString(), username: user.username, userAgent },
-    process.env.ACCESS_TOKEN_SECRET
+    process.env.ACCESS_TOKEN_SECRET,
+    {
+      expiresIn: 3 * 24 * 60 * 60,
+    }
   );
   user.tokens = user.tokens.concat({ token });
 
@@ -75,6 +78,7 @@ userSchema.statics.findByCredentials = async function (username, password) {
   return user;
 };
 
+//This function works before save the db
 userSchema.pre("save", async function (next) {
   const user = this;
 

@@ -1,5 +1,7 @@
 const Users = require("../models/user");
 
+//Controllers about home pages
+
 const gotoHome = async (req, res) => {
   res.render("dashboard");
 };
@@ -7,7 +9,7 @@ const gotoHome = async (req, res) => {
 const goToUsers = async (req, res) => {
   try {
     const users = await Users.find({});
-    console.log(req.session.isLoggedIn);
+
     res.render("userlist", {
       users,
     });
@@ -19,7 +21,6 @@ const goToUsers = async (req, res) => {
 const goToProfile = async (req, res) => {
   try {
     const users = await Users.findById(req.session.userId);
-    console.log(users);
 
     res.render("profile", {
       users,
