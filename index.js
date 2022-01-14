@@ -32,7 +32,6 @@ app.use(
     store,
   })
 );
-
 app.use("*", (req, res, next) => {
   userIN = req.session.userId;
   next();

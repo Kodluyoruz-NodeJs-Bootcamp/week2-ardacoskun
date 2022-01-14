@@ -7,7 +7,7 @@ const gotoHome = async (req, res) => {
 const goToUsers = async (req, res) => {
   try {
     const users = await Users.find({});
-
+    console.log(req.session.isLoggedIn);
     res.render("userlist", {
       users,
     });
@@ -19,6 +19,7 @@ const goToUsers = async (req, res) => {
 const goToProfile = async (req, res) => {
   try {
     const users = await Users.findById(req.session.userId);
+    console.log(users);
 
     res.render("profile", {
       users,
@@ -28,4 +29,8 @@ const goToProfile = async (req, res) => {
   }
 };
 
-module.exports = { gotoHome, goToUsers, goToProfile };
+const errorPage = async (req, res) => {
+  res.render("error");
+};
+
+module.exports = { gotoHome, goToUsers, goToProfile, errorPage };

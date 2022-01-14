@@ -11,6 +11,6 @@ router.get("/users", auth, homeController.goToUsers);
 
 router.get("/profile", auth, homeController.goToProfile);
 
-//Read User By Id
+//router.get("*", homeController.errorPage);
 
 module.exports = router;

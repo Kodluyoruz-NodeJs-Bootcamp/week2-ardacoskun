@@ -192,6 +192,15 @@
   background-color: #25325c;
 }
 
+.profile-body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 200px;
+  justify-content: center;
+  background-color: #25325c;
+}
+
 .profile-list {
   list-style-type: none;
 }
@@ -244,4 +253,20 @@
   height: 100px;
   border-radius: 50%;
   border: 1px solid #0088dd;
+}
+
+.logout-text {
+  text-decoration: none;
+}
+
+/* -------- */
+
+.error-body {
+  height: 100vh;
+  background-color: #fff;
+}
+
+.error-text {
+  color: #f45d48;
+  width: 100000px;
 }

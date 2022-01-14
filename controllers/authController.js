@@ -26,12 +26,15 @@ const postLogin = async (req, res) => {
 
     const token = await user.generateAuthToken(userAgent);
 
+    //Set jwt token into a cookie
     res.cookie("jwt", token, { httpOnly: true });
 
     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+
+    //Session definitions
     req.session.userId = decoded._id;
-    console.log("Decoded:", decoded._id);
     req.session.userAgent = userAgent;
+    req.session.isLoggedIn = true;
 
     res.status(201).redirect("/"); // .send()kısmı gerekebilir tekrar bak.
   } catch (error) {
@@ -44,10 +47,7 @@ const postRegister = async (req, res) => {
   const user = new Users(req.body);
 
   try {
-    //const token = await user.generateAuthToken(); //Create JWT token while user signing up.
     await user.save();
-
-    //res.cookie("jwt", token, { httpOnly: true }); // Send jWT token to client with cookie.
 
     res.status(201).redirect("/girisyap");
   } catch (error) {
@@ -79,8 +79,13 @@ const logoutAll = async (req, res) => {
   }
 };
 
-const logoutWithCookie = (req, res) => {
-  const cookie = res.cookie("jwt", "", { maxAge: 1 }); // Switch jwt token to empty one and expired very soon.
+const logoutUser = (req, res) => {
+  // Switch jwt token to empty one and expired very soon.
+  res.cookie("jwt", "", { maxAge: 1 });
+  res.cookie("connect.sid", "", { maxAge: 1 });
+
+  //Clear Session
+  req.session.destroy();
 
   res.redirect("/");
 };
@@ -92,5 +97,5 @@ module.exports = {
   postRegister,
   logout,
   logoutAll,
-  logoutWithCookie,
+  logoutUser,
 };
