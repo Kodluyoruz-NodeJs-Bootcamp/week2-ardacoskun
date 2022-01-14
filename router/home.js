@@ -1,14 +1,16 @@
 const express = require("express");
 const router = new express.Router();
 const Users = require("../models/user");
+const auth = require("../middleware/auth");
+const homeController = require("../controllers/homeController");
+const logout = require("../controllers/authController");
 
-router.get("/", async (req, res) => {
-  try {
-    const users = await Users.find({});
-    res.status(201).send(users);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-});
+router.get("/", auth, homeController.gotoHome);
+
+router.get("/users", auth, homeController.goToUsers);
+
+router.get("/profile", auth, homeController.goToProfile);
+
+//Read User By Id
 
 module.exports = router;
