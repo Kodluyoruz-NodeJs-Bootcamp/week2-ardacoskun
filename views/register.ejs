@@ -1,0 +1,38 @@
+<%- include('partials/_header') -%>
+  <body class="login-body">
+    <form method="POST" action="/kayitol" class="form">
+        <div class="title">Kayıt Ol</div>
+        <div class="input-container ic1">
+          <input name="name" class="input" type="text" placeholder=" " required/>
+          <div class="cut"></div>
+          <label for="name" class="placeholder">Ad</label>
+          <div class="name-error"></div>
+        </div>
+        <div class="input-container ic2">
+          <input name="surname" class="input" type="text" placeholder=" " required/>
+          <div class="cut"></div>
+          <label for="surname" class="placeholder">Soyad</label>
+          <div class="surname-error"></div>
+        </div>
+        <div class="input-container ic2">
+          <input name="username" class="input" type="text" placeholder=" " required/>
+          <div class="cut "></div>
+          <label for="username" class="placeholder">Kullanıcı Adı</label>
+          <div class="username-error"></div>
+        </div>
+        <div class="input-container ic2">
+            <input name="password" class="input" type="password" placeholder=" " required/>
+            <div class="cut "></div>
+            <label for="password" class="placeholder">Şifre</label>
+            <div class="password-error"></div>
+        </div>
+        <button type="submit" class="submit">Kayıt Ol</button>
+        <div class="toLogin">
+          <p>Zaten bir hesabım var. <a href="/girisyap" class="to">Giriş Yap</a></p>
+        </div>
+      </form>
+
+    
+
+  </body>
+</html>

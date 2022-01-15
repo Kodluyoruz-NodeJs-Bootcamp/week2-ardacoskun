@@ -1,0 +1,24 @@
+<%- include('partials/_header') -%>
+<body class="login-body">
+    <form method="POST" action="/girisyap" class="form-login">
+        <div class="title">Giriş Yap</div>
+        <div class="input-container ic1">
+          <input name="username" class="input" type="text" placeholder=" " required/>
+          <div class="cut "></div>
+          <label for="username" class="placeholder">Kullanıcı Adı</label>
+          <div class="username-error"></div>
+        </div>
+        <div class="input-container ic2">
+            <input name="password" class="input" type="password" placeholder=" " required/>
+            <div class="cut "></div>
+            <label for="password" class="placeholder">Şifre</label>
+            <div class="password-error"></div>
+        </div>
+        
+        <button type="submit" class="submit">Giriş Yap</button>
+        <div class="toLogin">
+          <p>Henüz bir hesabınız yok mu? <a href="/kayitol" class="to">Kayıt Ol</a></p>
+        </div>
+      </form>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<%- include('partials/_header') -%>
+
+<body class="dashboard-body">
+<div class="main-dashboard">
+
+  <div class="main-button" id="gotoUserList">Kullanıcı Listesi</div>
+  <div class="main-button middle" id="profile">Profil</div>
+  <a href="/logout" class="logout-text"><div class="main-button" id="logout" >Çıkış Yap</div></a>
+  
+</div>
+
+<script >
+  document.getElementById("gotoUserList").onclick = function () {
+      location.href = "/users";
+  };
+
+  document.getElementById("profile").onclick = function () {
+   
+      location.href = "/profile";
+  };
+
+ 
+</script>
+
+</body>
+</html>

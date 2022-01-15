@@ -1,0 +1,26 @@
+<%- include('partials/_header') -%>
+<body class="profile-body">
+
+
+    <ul class="profile-list">
+        <li class="profile-list-item">
+            <div class="profile-container">
+            <div class="avatar-container">  
+                <img src="img/vecihi.jpg" alt="avatar" class="avatar-image" />
+              </div>
+                <div class="info-container">
+                  <h1 class="user-title"><%=users.name %> <%=users.surname %></h1>
+                  <h3 class="user-username">@<%=users.username %></h3>
+                  <h4 class="user-isAdmin">Admin: <%= users.isAdmin %></h4>
+                </div>
+              
+              </div>
+        </li>
+    </ul> 
+ 
+
+
+
+    
+</body>
+</html>

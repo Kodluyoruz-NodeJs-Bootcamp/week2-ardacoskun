@@ -1,0 +1,32 @@
+<%- include('partials/_header') -%>
+
+<body class="userlist-body">
+
+    
+    <% for(let i=0;i< users.length;i++){ %>
+        <ul class="profile-list">
+            <li class="profile-list-item">
+                <div class="profile-container">
+                <div class="avatar-container">  
+                    <img src="img/vecihi.jpg" alt="avatar" class="avatar-image" />
+                  </div>
+                    <div class="info-container">
+                      <h1 class="user-title"><%=users[i].name %> <%=users[i].surname %></h1>
+                      <h3 class="user-username">@<%=users[i].username %></h3>
+                      <h4 class="user-isAdmin">Admin: <%= users[i].isAdmin %></h4>
+                    </div>
+                  
+                  </div>
+            </li>
+        </ul> 
+     
+
+    <%} %>
+
+ 
+  </body>
+
+
+
+
+</html>
