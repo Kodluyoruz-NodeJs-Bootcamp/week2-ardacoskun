@@ -22,6 +22,7 @@ dotenv.config();
 //GLOBAL VARIABLE
 global.userIn = null;
 
+app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs"); // template-engine
 //Session definition
 app.use(
@@ -39,6 +40,7 @@ app.use("*", (req, res, next) => {
   userIN = req.session.userId;
   next();
 });
+
 app.use(express.static("public")); // This middleware is about static files.
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
